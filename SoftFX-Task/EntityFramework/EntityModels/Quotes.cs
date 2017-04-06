@@ -23,7 +23,7 @@ namespace SoftFX_Task.EntityFramework.EntityModels
         [Required]
         public double Close { get; set; }
         [Required]
-        public double Volume { get; set; }
+        public int Volume { get; set; }
         [Required]
         public int SymbolId { get; set; }
         [Required]
@@ -32,6 +32,11 @@ namespace SoftFX_Task.EntityFramework.EntityModels
         public Quotes()
         {
             Symbol = new Symbol();
+        }
+        public Quotes(Symbol symbol, DateTime datetime)
+        {
+            Symbol = symbol;
+            DateTime = datetime;
         }
     }
 }

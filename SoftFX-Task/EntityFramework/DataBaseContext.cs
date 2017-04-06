@@ -23,57 +23,67 @@ namespace SoftFX_Task.EntityFramework
     class DatabaseContextInitializer : DropCreateDatabaseAlways<DataBaseContext>
     {
         static readonly Random random = new Random();
+
+        QuoteHelperValues _valuesEURUSD = new QuoteHelperValues(0.0415, 0.023, 0.004);
+        Symbol EURUSD = new Symbol { Name = "EURUSD" };
+        QuoteHelperValues _valuesGBPUSD = new QuoteHelperValues(1.23, 0.150, 0.005);
+        Symbol GBPUSD = new Symbol { Name = "GBPUSD" };
+
+        static readonly int _daysAmount = 3;
+        static readonly DateTime _startDateTime = new DateTime(2017, 4, 4, 0, 0, 0);
+
+        protected override void Seed(DataBaseContext db)
+        {
+            db.Symbols.AddRange(new List<Symbol>() { EURUSD, GBPUSD });
+            db.SaveChanges();
+
+            DateTime datetime = _startDateTime;
+
+            /******* Initialize  Quotes ********/
+            for (int i = 0; i < 24 * _daysAmount; i++)
+            {
+                db.Quotes.Add(InitializeQuotes(new Quotes(EURUSD, datetime), _valuesEURUSD));
+                db.Quotes.Add(InitializeQuotes(new Quotes(GBPUSD, datetime), _valuesGBPUSD));
+                datetime = datetime.AddHours(1);
+            }
+            db.SaveChanges();
+        }
+
         static double RandomDouable(double minValue = 0, double maxValue = 0)
         {
             var rndmNumb = random.NextDouble();
             return minValue + (rndmNumb * (maxValue - minValue));
         }
-
-        static readonly double _nextQuoteMaxStepUSD = 0.004;
-        static readonly double _deltaMinUSD = 0.023;
-        static readonly double _deltaMaxUSD = 0.014;
-        static readonly double _firstOpenUSD = 0.0415;
-
-        static readonly int _daysAmount = 3;
-        static readonly DateTime _startDateTime = new DateTime(2017, 4, 4, 0, 0, 0);
-
         /// <summary>
         /// Generate random values for quotes. Quotes.Open is requered.
         /// </summary>
-        private Quotes InitializeQuotes(Quotes quotes)
+        private Quotes InitializeQuotes(Quotes quotes, QuoteHelperValues helper)
         {
-            quotes.Low = RandomDouable(quotes.Open - _deltaMinUSD, quotes.Open);
-            quotes.High = RandomDouable(quotes.Open, quotes.Open + _deltaMaxUSD);
+            quotes.Open = helper.FirstOpen;
+            double temp = helper.FirstOpen - helper.Delta;
+            quotes.Low = RandomDouable(temp < 0 ? 0 : temp, quotes.Open);
+            quotes.High = RandomDouable(quotes.Open, quotes.Open + helper.Delta);
             quotes.Close = RandomDouable(quotes.Low, quotes.High);
-            quotes.Volume = 0;
+            quotes.Volume = random.Next(0, helper.VolumeMax);
+            temp = quotes.Close - helper.NextQuoteDeltaStep;
+            helper.FirstOpen = RandomDouable(temp < 0 ? 0 : temp, quotes.Close + helper.NextQuoteDeltaStep);
             return quotes;
         }
-
-        protected override void Seed(DataBaseContext db)
+    }
+    public class QuoteHelperValues
+    {
+        public double NextQuoteDeltaStep { get; }
+        public double FirstOpen { get; set; }
+        public double Delta { get; }
+        public int VolumeMax { get; }
+        public QuoteHelperValues(double openValue, double delta, double nextStep, int volume)
         {
-            Symbol EURUSD = new Symbol { Name = "EURUSD" };
-            Symbol GOLD = new Symbol { Name = "GOLD" };
-            Symbol USDJPY = new Symbol { Name = "USDJPY" };
-            db.Symbols.AddRange(new List<Symbol>() { EURUSD, GOLD, USDJPY });
-            db.SaveChanges();
-
-            DateTime datetime = _startDateTime;
-            Quotes temp = new Quotes();
-            temp.Open = _firstOpenUSD;
-            double tempClose;
-            /******* Initialize EURUSD bars ********/
-            for (int i = 0; i < 24 * _daysAmount; i++)
-            {
-                InitializeQuotes(temp);
-                temp.DateTime = datetime;
-                temp.Symbol = EURUSD;
-                db.Quotes.Add(temp);
-                tempClose = temp.Close;
-                datetime = datetime.AddHours(1);
-                temp = new Quotes();
-                temp.Open = RandomDouable(tempClose - _nextQuoteMaxStepUSD, tempClose + _nextQuoteMaxStepUSD);
-            }
-            db.SaveChanges();
+            NextQuoteDeltaStep = nextStep;
+            FirstOpen = openValue;
+            Delta = delta;
+            VolumeMax = volume;
         }
+        public QuoteHelperValues(double openValue, double delta, double nextStep) : this(openValue, delta, nextStep, int.MaxValue)
+        {   }
     }
 }

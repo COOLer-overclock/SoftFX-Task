@@ -157,10 +157,14 @@
     <Compile Include="EntityFramework\EntityModels\Quotes.cs" />
     <Compile Include="EntityFramework\EntityModels\Symbol.cs" />
     <Compile Include="EntityFramework\Interfaces\IEntity.cs" />
+    <Compile Include="EntityFramework\Interfaces\IRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Repositories\QuotesRepository.cs" />
+    <Compile Include="Services\Repositories\RepositoryBase.cs" />
+    <Compile Include="Services\Repositories\SymbolsRepository.cs" />
     <Compile Include="SignalR\Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -172,10 +176,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Style.css">
+      <DependentUpon>Style.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Style.min.css">
+      <DependentUpon>Style.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -186,6 +195,11 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\Style.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
