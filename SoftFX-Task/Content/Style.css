@@ -9,4 +9,10 @@ nav {
 
 footer {
   margin-top: 10px; }
+  footer #copy-rights {
+    padding-left: 15px;
+    float: left; }
+  footer #developer {
+    padding-right: 15px;
+    float: right; }
 

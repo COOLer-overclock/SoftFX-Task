@@ -12,16 +12,6 @@ namespace SoftFX_Task.AutoMapper
     {
         public AutoMapperProfile()
         {
-            /* CreateMap<Quote, SymbolQuote>()
-                 .ForMember(x => x.ShortName, c => c.MapFrom(v => v.Symbol.Name))
-                 .ForMember(x => x.HighPrice, c => c.MapFrom(v => v.High))
-                 .ForMember(x => x.LowPrice, c => c.MapFrom(v => v.Low))
-                 .ForMember(x => x.OpenPrice, c => c.MapFrom(v => v.Open))
-                 .ForMember(x => x.LastDealPrice, c => c.MapFrom(v => v.Close))
-                 .ForMember(x => x.Volume, c => c.MapFrom(v => v.Volume));
-             CreateMap<Quote, SymbolQuoteData>()
-                 .ForMember(x => x.SymbolName, c => c.MapFrom(v => v.Symbol.Name))
-                 .ForMember(x => x.SymbolQuote, c => c.MapFrom(v => Mapper.Map<Quote, SymbolQuote>(v)));*/
             CreateMap<ICollection<Quote>, Bars>()
                 .ForMember(x => x.DateTime, c => c.MapFrom(v => v.Select(b => b.DateTime).ToList()))
                 .ForMember(x => x.Close, c => c.MapFrom(v => v.Select(b => b.Close).ToList()))

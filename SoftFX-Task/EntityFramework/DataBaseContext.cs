@@ -37,7 +37,7 @@ namespace SoftFX_Task.EntityFramework
                 AddQuotesData(db);
                 IncreaseDate();
             }*/
-            while(CustomDatas.dateTime <= new DateTime(2017, 4, 7, 0, 0, 0))
+            while(CustomDatas.dateTime <= DateTime.Now)
             {
                 AddQuotesData(db);
                 IncreaseDate();

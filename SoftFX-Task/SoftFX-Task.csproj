@@ -170,15 +170,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile.cs" />
-    <Compile Include="Chart_Files\BarsRequest\Bars.cs" />
-    <Compile Include="Chart_Files\BarsRequest\BarsResponse.cs" />
-    <Compile Include="Chart_Files\ResolveSymbol\SymbolInfo.cs" />
-    <Compile Include="Chart_Files\OnReady\Configuration.cs" />
-    <Compile Include="Chart_Files\SymbolSearch\SymbolParam.cs" />
-    <Compile Include="Chart_Files\Params\QuotesSymbols.cs" />
+    <Compile Include="Chart_Files\History\Bars.cs" />
+    <Compile Include="Chart_Files\Symbols\SymbolInfo.cs" />
+    <Compile Include="Chart_Files\Configuration\Configuration.cs" />
     <Compile Include="Chart_Files\SymbolSearch\SymbolSearchResponse.cs" />
     <Compile Include="Controllers\apiBase.cs" />
-    <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\configController.cs" />
     <Compile Include="Controllers\historyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -198,8 +194,6 @@
     <Compile Include="Services\Repositories\QuotesRepository.cs" />
     <Compile Include="Services\Repositories\RepositoryBase.cs" />
     <Compile Include="Services\Repositories\SymbolsRepository.cs" />
-    <Compile Include="SignalR\ChartingHub.cs" />
-    <Compile Include="SignalR\Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\DataBase.mdf" />
@@ -244,8 +238,6 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.1.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
