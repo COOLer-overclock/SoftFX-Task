@@ -7,7 +7,7 @@ Avaliable symbols name for searching: EURUSD, GBPUSD, GOLD.
 Hourly bars (Quotes Table) generates from 15 March 2017 0:00 to now.  
 Link on my database: https://drive.google.com/open?id=0Bx96-engYIO2cE5uU2VXeS1BVmM
 
-I have used in WebApi controllers for responding data to chart and EntityFramework 6 database working.
+I have used in WebApi controllers for responding data to chart and EntityFramework 6 for database working.
 
 Full project reference: https://drive.google.com/open?id=0Bx96-engYIO2QkY4QzBLU293Z2M
 
