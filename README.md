@@ -1,5 +1,5 @@
 # SoftFX-Task
-Task for applying for a job
+Task for applying for a job.
 
 This application shows my first try working with TradingView charting library.
 Database with bars and symbols generates on first call DbContext instance. Symbols generates randomly.
