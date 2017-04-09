@@ -94,10 +94,6 @@ namespace SoftFX_Task.Chart_Files
             Industry = "";
             CurrencyCode = 0;
         }
-        public SymbolInfo(double priceScale) : base()
-        {
-            PriceScale = priceScale;
-        }
     }
     public class TradingSession
     {
