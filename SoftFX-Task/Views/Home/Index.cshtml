@@ -2,19 +2,49 @@
     ViewBag.Title = "Home Page";
 }
 
+<script src="~/Scripts/datafeed.js"></script>
+<script src="~/Scripts/charting_library.min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+<script src="~/signalr/hubs"></script>
+<script>
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+</script>
+<script>
+    TradingView.onready(function () {
+        var widget = window.tvWidget = new TradingView.widget({
+            fullscreen: false,
+            debug: true,
+            symbol: 'EURUSD',
+            width: "100%",
+            interval: '60',
+            container_id: "tv_chart_container",
+            //	BEWARE: no trailing slash is expected in feed URL
+            //datafeed: new Datafeeds.UDFCompatibleDatafeed("https://demo_feed.tradingview.com"),
+            datafeed: new Datafeeds.UDFCompatibleDatafeed("@ViewBag.DatafeedURL", 5000),
+            library_path: "charting_library/",
+            locale: getParameterByName('lang') || "en",
+            //	Regression Trend-related functionality is not implemented yet, so it's hidden for a while
+            drawings_access: { type: 'black', tools: [{ name: "Regression Trend" }] },
+            disabled_features: ["use_localstorage_for_settings"],
+            charts_storage_url: 'http://saveload.tradingview.com',
+            charts_storage_api_version: "1.1",
+            client_id: 'tradingview.com',
+            user_id: 'public_user_id'
+        });
+        widget.onChartReady(function () {
+        })
+    });
+</script>
+<script>
+</script>
+ <div id="tv_chart_container">
+ </div>
 <script>
     $(document).ready(function () {
-        $.ajax({
-            method: "GET",
-            url: "https://ttdemowebapi.soft-fx.com:8443/api/v1/public/symbol",
-            dataType: "json",
-            success: function (data) {
-                console.log('Received data from external source!');
-                var symbolsArray = new Array();
-                $(data).each(function (index, value) {
-                    symbolsArray[symbolsArray.length] = value.Symbol;
-                })
-            }
-        })
     })
 </script>

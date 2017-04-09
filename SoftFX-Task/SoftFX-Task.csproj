@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -84,12 +88,24 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -152,9 +168,26 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="AutoMapper\AutoMapperProfile.cs" />
+    <Compile Include="Chart_Files\BarsRequest\Bars.cs" />
+    <Compile Include="Chart_Files\BarsRequest\BarsResponse.cs" />
+    <Compile Include="Chart_Files\ResolveSymbol\SymbolInfo.cs" />
+    <Compile Include="Chart_Files\OnReady\Configuration.cs" />
+    <Compile Include="Chart_Files\SymbolSearch\SymbolParam.cs" />
+    <Compile Include="Chart_Files\Params\QuotesSymbols.cs" />
+    <Compile Include="Chart_Files\SymbolSearch\SymbolSearchResponse.cs" />
+    <Compile Include="Controllers\apiBase.cs" />
+    <Compile Include="Controllers\ChartController.cs" />
+    <Compile Include="Controllers\configController.cs" />
+    <Compile Include="Controllers\historyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\searchController.cs" />
+    <Compile Include="Controllers\symbolsController.cs" />
+    <Compile Include="Controllers\timeController.cs" />
+    <Compile Include="EntityFramework\CustomDatas.cs" />
     <Compile Include="EntityFramework\DataBaseContext.cs" />
-    <Compile Include="EntityFramework\EntityModels\Quotes.cs" />
+    <Compile Include="EntityFramework\EntityModels\Quote.cs" />
     <Compile Include="EntityFramework\EntityModels\Symbol.cs" />
     <Compile Include="EntityFramework\Interfaces\IEntity.cs" />
     <Compile Include="EntityFramework\Interfaces\IRepository.cs" />
@@ -165,6 +198,7 @@
     <Compile Include="Services\Repositories\QuotesRepository.cs" />
     <Compile Include="Services\Repositories\RepositoryBase.cs" />
     <Compile Include="Services\Repositories\SymbolsRepository.cs" />
+    <Compile Include="SignalR\ChartingHub.cs" />
     <Compile Include="SignalR\Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +235,8 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\charting_library.min.js" />
+    <Content Include="Scripts\datafeed.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -217,6 +253,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\temp.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -233,6 +270,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\Chart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

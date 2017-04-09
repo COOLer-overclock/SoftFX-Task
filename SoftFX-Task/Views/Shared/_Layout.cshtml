@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Scripts.Render("~/bundles/jquery")
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <nav>
@@ -16,13 +15,16 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <footer>
+    <section id="main-content">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </section>
+    <footer>
+        <div class="container">
             <p>&copy; @DateTime.Now.Year - SoftFX</p>
-        </footer>
-    </div>
-
+        </div>
+    </footer>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", false)
 </body>

@@ -1,4 +1,5 @@
-﻿using SoftFX_Task.EntityFramework.Interfaces;
+﻿using Newtonsoft.Json;
+using SoftFX_Task.EntityFramework.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,12 +9,13 @@ using System.Web;
 
 namespace SoftFX_Task.EntityFramework.EntityModels
 {
-    public class Quotes : IEntity
+    public class Quote : IEntity
     {
         [Key]
         public int Id { get; set; }
+        [JsonProperty(PropertyName = "time")]
         [Required]
-        public DateTime DateTime { get; set; }
+        public long DateTime { get; set; }
         [Required]
         public double Open { get; set; }
         [Required]
@@ -25,18 +27,17 @@ namespace SoftFX_Task.EntityFramework.EntityModels
         [Required]
         public int Volume { get; set; }
         [Required]
+        [ForeignKey("Symbol")]
         public int SymbolId { get; set; }
         [Required]
-        [ForeignKey("SymbolId")]
         public Symbol Symbol { get; set; }
-        public Quotes()
-        {
-            Symbol = new Symbol();
-        }
-        public Quotes(Symbol symbol, DateTime datetime)
+        public Quote()
+        { }
+        public Quote(Symbol symbol, DateTime datetime)
         {
             Symbol = symbol;
-            DateTime = datetime;
+            long timestamp = (long)((long)(datetime - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds);
+            DateTime = timestamp;
         }
     }
 }

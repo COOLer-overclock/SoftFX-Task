@@ -12,5 +12,10 @@ namespace SoftFX_Task.EntityFramework.EntityModels
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+        public ICollection<Quote> Quotes { get; set; }
+        public Symbol()
+        {
+            Quotes = new List<Quote>();
+        }
     }
 }

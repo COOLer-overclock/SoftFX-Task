@@ -1,9 +1,7 @@
 ﻿/********* Settings *********/
 $nav-grey: #fafdfa;
 
-nav {
-    z-index: 1;
-    position: fixed;
+nav {   
     width: 100%;
     height: 60px;
     background-color: $nav-grey;
@@ -14,4 +12,10 @@ nav {
             
         }
     }
+}
+section#main-content {
+ 
+}
+footer {
+    margin-top: 10px;
 }

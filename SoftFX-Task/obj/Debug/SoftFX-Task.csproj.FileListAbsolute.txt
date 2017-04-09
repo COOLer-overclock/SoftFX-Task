@@ -53,3 +53,11 @@ E:\Programming\Projects\For employer\SoftFX-Task\SoftFX-Task\bin\Newtonsoft.Json
 E:\Programming\Projects\For employer\SoftFX-Task\SoftFX-Task\obj\Debug\SoftFX-Task.csprojResolveAssemblyReference.cache
 E:\Programming\Projects\For employer\SoftFX-Task\SoftFX-Task\obj\Debug\SoftFX-Task.dll
 E:\Programming\Projects\For employer\SoftFX-Task\SoftFX-Task\obj\Debug\SoftFX-Task.pdb
+E:\Programming\Projects\For employer\SoftFX-Task\SoftFX-Task\bin\System.Net.Http.Formatting.dll
+E:\Programming\Projects\For employer\SoftFX-Task\SoftFX-Task\bin\System.Web.Http.dll
+E:\Programming\Projects\For employer\SoftFX-Task\SoftFX-Task\bin\System.Web.Http.WebHost.dll
+E:\Programming\Projects\For employer\SoftFX-Task\SoftFX-Task\bin\System.Net.Http.Formatting.xml
+E:\Programming\Projects\For employer\SoftFX-Task\SoftFX-Task\bin\System.Web.Http.xml
+E:\Programming\Projects\For employer\SoftFX-Task\SoftFX-Task\bin\System.Web.Http.WebHost.xml
+E:\Programming\Projects\For employer\SoftFX-Task\SoftFX-Task\bin\AutoMapper.dll
+E:\Programming\Projects\For employer\SoftFX-Task\SoftFX-Task\bin\AutoMapper.xml
