@@ -11,4 +11,5 @@ I have used in WebApi controllers for responding data to chart and EntityFramewo
 Full project reference: https://drive.google.com/open?id=0Bx96-engYIO2QkY4QzBLU293Z2M
 
 With regards,
+
 Eliseytsev Alexander
