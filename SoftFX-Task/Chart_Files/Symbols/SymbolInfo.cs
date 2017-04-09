@@ -72,9 +72,9 @@ namespace SoftFX_Task.Chart_Files
             Exchange = "";
             ListedExchange = "";
             TimeZone = "UTC";
-            Fractional = true;
-            MinMov = 0.00001;
-            PriceScale = 0.00001;
+            Fractional = false;
+            MinMov = 1;
+            PriceScale = 0.01;
             MinMove2 = 0;
             HasIntraday = true;
             SupportedResolutions = new List<string>() { "60", "120", "D" };
@@ -93,6 +93,10 @@ namespace SoftFX_Task.Chart_Files
             Sector = "";
             Industry = "";
             CurrencyCode = 0;
+        }
+        public SymbolInfo(double priceScale) : base()
+        {
+            PriceScale = priceScale;
         }
     }
     public class TradingSession

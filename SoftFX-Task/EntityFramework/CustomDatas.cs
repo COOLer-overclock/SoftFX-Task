@@ -11,12 +11,17 @@ namespace SoftFX_Task.EntityFramework
         static readonly Random random = new Random();
 
         public static DateTime dateTime = new DateTime(2017, 3, 15, 0, 0, 0);
-        static QuoteHelperValues _valuesEURUSD = new QuoteHelperValues(0.0415, 0.023, 0.004, 1000, true);
+        static QuoteHelperValues _valuesEURUSD = new QuoteHelperValues(0.45, 0.23, 0.04, 1000, true);
         static Symbol EURUSD = new Symbol { Name = "EURUSD" };
-        static QuoteHelperValues _valuesGBPUSD = new QuoteHelperValues(2.23, 0.650, 0.01, 1500, true);
+        static QuoteHelperValues _valuesGBPUSD = new QuoteHelperValues(2.23, 0.65, 0.01, 1500, true);
         static Symbol GBPUSD = new Symbol { Name = "GBPUSD" };
         static QuoteHelperValues _valuesGOLD = new QuoteHelperValues(120, 200, 40, 2500, false);
         static Symbol GOLD = new Symbol { Name = "GOLD" };
+
+        public static ICollection<string> GetIntegerSymbolsName()
+        {
+            return new List<string>() { "GOLD" };
+        }
 
         static public ICollection<Symbol> GetSymbols()
         {
@@ -39,7 +44,8 @@ namespace SoftFX_Task.EntityFramework
         static double RandomDouable(double minValue = 0, double maxValue = 0)
         {
             var rndmNumb = random.NextDouble();
-            return minValue + (rndmNumb * (maxValue - minValue));
+            var temp = minValue + (rndmNumb * (maxValue - minValue));
+            return Convert.ToDouble(temp.ToString("N2"));   
         }
         static double RandomInt(double minValue = 0, double maxValue = 0)
         {

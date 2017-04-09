@@ -21,7 +21,7 @@ namespace SoftFX_Task.EntityFramework
             Database.SetInitializer<DataBaseContext>(new DatabaseContextInitializer());
         }
     }
-    class DatabaseContextInitializer : DropCreateDatabaseAlways<DataBaseContext>
+    class DatabaseContextInitializer : CreateDatabaseIfNotExists<DataBaseContext>
     {
         static readonly int _daysAmount = 3;
         static readonly int _multiplier = 24;
@@ -30,7 +30,6 @@ namespace SoftFX_Task.EntityFramework
         {
             db.Symbols.AddRange(CustomDatas.GetSymbols());
             db.SaveChanges();
-
             /******* Initialize  Quotes ********/
             /*for (int i = 0; i < _multiplier * _daysAmount; i++)
             {
