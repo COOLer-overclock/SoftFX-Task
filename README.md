@@ -2,7 +2,7 @@
 Task for applying for a job.
 
 This application shows my first try working with TradingView charting library.
-Database with bars and symbols generates on first call DbContext instance. Symbols generates randomly.
+Database with bars and symbols generates on database creating, if databse exist it wouldn't be created again. Quqotes table values generates randomly.
 Avaliable symbols name for searching: EURUSD, GBPUSD, GOLD.
 Hourly bars (Quotes Table) generates from 15 March 2017 0:00 to now.  
 Link on my database: https://drive.google.com/open?id=0Bx96-engYIO2ZFV3aG9JenVpUlk
